@@ -12,6 +12,8 @@ export interface UserSettings {
   aiGender: AIGender;
   aiName: string;
   setupComplete: boolean;
+  userAvatar?: string; // base64 data URL
+  chatBackground?: string; // base64 data URL
 }
 
 export interface ChatState {

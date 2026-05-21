@@ -3,10 +3,11 @@ import type { Message } from '../lib/types';
 
 interface Props {
   message: Message;
-  avatarUrl: string;
+  aiAvatarUrl: string;
+  userAvatarUrl?: string;
 }
 
-export default function ChatMessage({ message, avatarUrl }: Props) {
+export default function ChatMessage({ message, aiAvatarUrl, userAvatarUrl }: Props) {
   const isUser = message.role === 'user';
   const [lightbox, setLightbox] = useState(false);
 
@@ -16,11 +17,15 @@ export default function ChatMessage({ message, avatarUrl }: Props) {
         <div className={`flex gap-3 max-w-[80%] ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
           {/* avatar */}
           {isUser ? (
-            <div className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center text-xs bg-user-bubble text-text-secondary border border-washi-dark">
-              你
-            </div>
+            userAvatarUrl ? (
+              <img src={userAvatarUrl} alt="あなた" className="w-9 h-9 rounded-full flex-shrink-0 object-cover" />
+            ) : (
+              <div className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center text-xs bg-user-bubble text-text-secondary border border-washi-dark">
+                你
+              </div>
+            )
           ) : (
-            <img src={avatarUrl} alt="AI" className="w-9 h-9 rounded-full flex-shrink-0 object-cover" />
+            <img src={aiAvatarUrl} alt="AI" className="w-9 h-9 rounded-full flex-shrink-0 object-cover" />
           )}
 
           {/* bubble */}
