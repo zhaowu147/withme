@@ -25,8 +25,8 @@ export default function App() {
     saveChatState(state);
   }, [state]);
 
-  const handleSend = async (text: string) => {
-    const userMsg: Message = { id: genId(), role: 'user', content: text, timestamp: Date.now() };
+  const handleSend = async (text: string, image?: string) => {
+    const userMsg: Message = { id: genId(), role: 'user', content: text, timestamp: Date.now(), image };
 
     let newState = addMessage(state, userMsg);
     newState = updateAffinity(newState, 1);
@@ -104,7 +104,6 @@ export default function App() {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-6 chat-bg relative">
-        <img src="/petals.svg" alt="" className="absolute inset-0 w-full h-full pointer-events-none float-petal" aria-hidden="true" />
         <div className="max-w-3xl mx-auto">
           {state.messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center py-20">

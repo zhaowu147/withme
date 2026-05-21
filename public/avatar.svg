@@ -1,35 +1,74 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="hair" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2c2c2c"/>
-      <stop offset="100%" style="stop-color:#4a4a4a"/>
-    </linearGradient>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#faf8f5"/>
-      <stop offset="100%" style="stop-color:#f0ece5"/>
+      <stop offset="0%" style="stop-color:#fef7f0"/>
+      <stop offset="100%" style="stop-color:#fde8d8"/>
     </linearGradient>
+    <linearGradient id="hair" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <clipPath id="circle"><circle cx="100" cy="100" r="96"/></clipPath>
   </defs>
-  <!-- background circle -->
-  <circle cx="100" cy="100" r="95" fill="url(#bg)" stroke="#c75b7a" stroke-width="1.5"/>
-  <!-- hair back -->
-  <ellipse cx="100" cy="85" rx="55" ry="60" fill="url(#hair)"/>
-  <!-- face -->
-  <ellipse cx="100" cy="105" rx="38" ry="42" fill="#fde8d0"/>
-  <!-- hair front bangs -->
-  <path d="M60 80 Q70 55 100 50 Q130 55 140 80 Q135 70 120 68 Q110 75 100 72 Q90 75 80 68 Q65 70 60 80Z" fill="url(#hair)"/>
-  <!-- side hair left -->
-  <path d="M55 85 Q50 100 52 130 Q55 125 58 110 Q60 95 60 85Z" fill="url(#hair)"/>
-  <!-- side hair right -->
-  <path d="M145 85 Q150 100 148 130 Q145 125 142 110 Q140 95 140 85Z" fill="url(#hair)"/>
-  <!-- eyes -->
-  <ellipse cx="82" cy="105" rx="6" ry="7" fill="#2c2c2c"/>
-  <ellipse cx="118" cy="105" rx="6" ry="7" fill="#2c2c2c"/>
-  <!-- eye highlights -->
-  <circle cx="84" cy="103" r="2" fill="white" opacity="0.8"/>
-  <circle cx="120" cy="103" r="2" fill="white" opacity="0.8"/>
-  <!-- subtle blush -->
-  <ellipse cx="72" cy="115" rx="8" ry="4" fill="#f5c6d0" opacity="0.5"/>
-  <ellipse cx="128" cy="115" rx="8" ry="4" fill="#f5c6d0" opacity="0.5"/>
-  <!-- mouth - small neutral line -->
-  <path d="M95 122 Q100 125 105 122" stroke="#c75b7a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+
+  <g clip-path="url(#circle)">
+    <!-- bg -->
+    <rect width="200" height="200" fill="url(#bg)"/>
+
+    <!-- hair back -->
+    <ellipse cx="100" cy="80" rx="62" ry="65" fill="url(#hair)"/>
+
+    <!-- neck -->
+    <rect x="88" y="130" width="24" height="30" rx="8" fill="#fde0c8"/>
+
+    <!-- body hint -->
+    <ellipse cx="100" cy="175" rx="50" ry="35" fill="#2c2c2c"/>
+
+    <!-- face -->
+    <ellipse cx="100" cy="100" rx="40" ry="45" fill="#fde8d0"/>
+
+    <!-- hair bangs - messy fringes -->
+    <path d="M58 78 Q62 50 80 42 Q90 38 100 40 Q110 38 120 42 Q138 50 142 78 L138 72 Q130 58 120 55 Q110 60 100 56 Q90 60 80 55 Q70 58 62 72Z" fill="url(#hair)"/>
+    <!-- long fringe left -->
+    <path d="M58 78 Q54 95 56 125 Q58 120 60 105 Q62 90 60 78Z" fill="url(#hair)"/>
+    <!-- long fringe right -->
+    <path d="M142 78 Q146 95 144 125 Q142 120 140 105 Q138 90 140 78Z" fill="url(#hair)"/>
+    <!-- ahoge -->
+    <path d="M95 40 Q92 25 88 18 Q95 22 100 30 Q105 22 112 18 Q108 25 105 40" fill="url(#hair)" stroke="#1a1a2e" stroke-width="0.5"/>
+
+    <!-- eyes - big anime style -->
+    <!-- left eye -->
+    <ellipse cx="80" cy="102" rx="10" ry="12" fill="#1a1a2e"/>
+    <ellipse cx="80" cy="103" rx="7" ry="9" fill="#2d3a6e"/>
+    <circle cx="82" cy="100" r="3" fill="white" opacity="0.9"/>
+    <circle cx="77" cy="105" r="1.5" fill="white" opacity="0.5"/>
+    <!-- right eye -->
+    <ellipse cx="120" cy="102" rx="10" ry="12" fill="#1a1a2e"/>
+    <ellipse cx="120" cy="103" rx="7" ry="9" fill="#2d3a6e"/>
+    <circle cx="122" cy="100" r="3" fill="white" opacity="0.9"/>
+    <circle cx="117" cy="105" r="1.5" fill="white" opacity="0.5"/>
+
+    <!-- eyebrows -->
+    <path d="M68 88 Q75 85 88 87" stroke="#1a1a2e" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M112 87 Q125 85 132 88" stroke="#1a1a2e" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- nose -->
+    <path d="M98 112 Q100 115 102 112" stroke="#e8b090" stroke-width="1" fill="none"/>
+
+    <!-- mouth - small cat-like -->
+    <path d="M92 122 Q96 126 100 123 Q104 126 108 122" stroke="#c75b7a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- blush -->
+    <ellipse cx="68" cy="115" rx="8" ry="4" fill="#f5c6d0" opacity="0.6"/>
+    <ellipse cx="132" cy="115" rx="8" ry="4" fill="#f5c6d0" opacity="0.6"/>
+
+    <!-- sparkles -->
+    <g fill="#c75b7a" opacity="0.7">
+      <polygon points="160,50 162,56 168,56 163,60 165,66 160,62 155,66 157,60 152,56 158,56" transform="scale(0.5) translate(220,40)"/>
+      <polygon points="160,50 162,56 168,56 163,60 165,66 160,62 155,66 157,60 152,56 158,56" transform="scale(0.35) translate(50,100)"/>
+    </g>
+  </g>
+
+  <!-- border -->
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#f5c6d0" stroke-width="2"/>
 </svg>

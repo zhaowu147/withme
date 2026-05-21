@@ -3,6 +3,7 @@ export interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: number;
+  image?: string; // base64 data URL
 }
 
 export interface ChatState {

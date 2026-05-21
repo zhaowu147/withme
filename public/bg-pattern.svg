@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" opacity="0.04">
+  <defs>
+    <style>
+      .petal { fill: #c75b7a; }
+      .petal-light { fill: #f5c6d0; }
+    </style>
+  </defs>
+
+  <!-- scattered sakura petals -->
+  <g class="petal">
+    <ellipse cx="80" cy="100" rx="12" ry="18" transform="rotate(25 80 100)"/>
+    <ellipse cx="200" cy="50" rx="10" ry="15" transform="rotate(-15 200 50)"/>
+    <ellipse cx="450" cy="120" rx="11" ry="16" transform="rotate(40 450 120)"/>
+    <ellipse cx="120" cy="350" rx="13" ry="19" transform="rotate(-30 120 350)"/>
+    <ellipse cx="380" cy="420" rx="9" ry="14" transform="rotate(20 380 420)"/>
+    <ellipse cx="520" cy="280" rx="12" ry="17" transform="rotate(-45 520 280)"/>
+    <ellipse cx="300" cy="250" rx="8" ry="12" transform="rotate(55 300 250)"/>
+    <ellipse cx="500" cy="500" rx="10" ry="15" transform="rotate(-10 500 500)"/>
+    <ellipse cx="50" cy="220" rx="9" ry="13" transform="rotate(35 50 220)"/>
+    <ellipse cx="320" cy="70" rx="11" ry="16" transform="rotate(-40 320 70)"/>
+    <ellipse cx="180" cy="480" rx="10" ry="14" transform="rotate(15 180 480)"/>
+    <ellipse cx="480" cy="180" rx="8" ry="12" transform="rotate(-25 480 180)"/>
+  </g>
+
+  <g class="petal-light">
+    <ellipse cx="150" cy="180" rx="7" ry="10" transform="rotate(45 150 180)"/>
+    <ellipse cx="400" cy="350" rx="8" ry="11" transform="rotate(-35 400 350)"/>
+    <ellipse cx="250" cy="450" rx="6" ry="9" transform="rotate(30 250 450)"/>
+    <ellipse cx="550" cy="80" rx="7" ry="10" transform="rotate(-20 550 80)"/>
+    <ellipse cx="100" cy="520" rx="8" ry="12" transform="rotate(50 100 520)"/>
+    <ellipse cx="350" cy="150" rx="6" ry="9" transform="rotate(-45 350 150)"/>
+  </g>
+
+  <!-- tiny dots like petals falling -->
+  <g fill="#f5c6d0" opacity="0.5">
+    <circle cx="90" cy="300" r="2"/>
+    <circle cx="270" cy="130" r="1.5"/>
+    <circle cx="420" cy="450" r="2"/>
+    <circle cx="550" cy="350" r="1.5"/>
+    <circle cx="150" cy="500" r="2"/>
+    <circle cx="350" cy="50" r="1.5"/>
+  </g>
+</svg>

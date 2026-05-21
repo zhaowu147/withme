@@ -7,7 +7,7 @@
   --color-sumi-light: #4a4a4a;
   --color-washi: #faf8f5;
   --color-washi-dark: #f0ece5;
-  --color-ai-bubble: #f0f4f8;
+  --color-ai-bubble: #ffffff;
   --color-user-bubble: #f5e6d3;
   --color-accent: #c75b7a;
   --color-text-primary: #333333;
@@ -30,13 +30,13 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-sakura-dark);
+  background-color: var(--color-sakura);
   border-radius: 3px;
 }
 
@@ -56,21 +56,70 @@ body {
   animation: fadeSlideUp 0.3s ease-out;
 }
 
-/* subtle sakura petal pattern background */
+/* chat background with gradient + pattern */
 .chat-bg {
-  background-image:
-    radial-gradient(circle at 20% 80%, rgba(245, 198, 208, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(199, 91, 122, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(245, 198, 208, 0.05) 0%, transparent 70%);
+  background:
+    url('/bg-pattern.svg') repeat,
+    linear-gradient(160deg, #fef9f4 0%, #faf8f5 30%, #fef5f0 60%, #faf8f5 100%);
+  background-size: 400px 400px, 100% 100%, 100% 100%, 100% 100%;
 }
 
-/* floating petals animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(5deg); }
+/* image message */
+.msg-image {
+  max-width: 240px;
+  max-height: 240px;
+  border-radius: 12px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
-.float-petal {
-  animation: float 6s ease-in-out infinite;
+.msg-image:hover {
+  transform: scale(1.02);
 }
-.float-petal:nth-child(2) { animation-delay: -2s; }
-.float-petal:nth-child(3) { animation-delay: -4s; }
+
+/* image preview in input */
+.img-preview {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.img-preview img {
+  max-height: 80px;
+  border-radius: 8px;
+  border: 2px solid var(--color-sakura);
+}
+.img-preview button {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: white;
+  border: 2px solid white;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
