@@ -27,7 +27,7 @@ export default function Onboarding({ onComplete }: Props) {
       {step === 'gender' ? (
         <div className="text-center animate-[fadeSlideUp_0.5s_ease-out]">
           <div className="mb-8">
-            <h1 className="text-2xl font-medium text-text-primary mb-2 tracking-wide">withme</h1>
+            <h1 className="text-3xl font-medium text-text-primary mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>𝓦𝓲𝓽𝓱 𝓜𝓮</h1>
             <p className="text-sm text-text-muted">はじめに、あなたのコンパニオンを選んでください</p>
           </div>
 
