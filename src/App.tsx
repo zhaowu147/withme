@@ -2,10 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import ChatMessage from './components/ChatMessage';
 import ChatInput from './components/ChatInput';
 import AffinityBar from './components/AffinityBar';
+import Onboarding from './components/Onboarding';
 import { buildSystemPrompt } from './lib/personality';
 import { sendMessage } from './lib/chat';
-import { loadChatState, saveChatState, addMessage, updateAffinity, clearChatState } from './lib/storage';
-import type { ChatState, Message } from './lib/types';
+import { loadChatState, saveChatState, addMessage, updateAffinity, updateSettings, clearChatState, getAvatarUrl } from './lib/storage';
+import type { ChatState, Message, AIGender } from './lib/types';
 
 function genId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -17,6 +18,10 @@ export default function App() {
   const [showMenu, setShowMenu] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const { settings } = state;
+  const avatarUrl = getAvatarUrl(settings.aiGender);
+  const aiName = settings.aiName || (settings.aiGender === 'female' ? 'あかり' : '蓮');
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [state.messages]);
@@ -24,6 +29,14 @@ export default function App() {
   useEffect(() => {
     saveChatState(state);
   }, [state]);
+
+  const handleOnboardingComplete = (gender: AIGender, name: string) => {
+    setState(updateSettings(state, {
+      aiGender: gender,
+      aiName: name,
+      setupComplete: true,
+    }));
+  };
 
   const handleSend = async (text: string, image?: string) => {
     const userMsg: Message = { id: genId(), role: 'user', content: text, timestamp: Date.now(), image };
@@ -34,7 +47,7 @@ export default function App() {
     setLoading(true);
 
     try {
-      const systemPrompt = buildSystemPrompt(newState.affinity);
+      const systemPrompt = buildSystemPrompt(newState.affinity, aiName, settings.aiGender);
       const reply = await sendMessage(newState.messages, systemPrompt);
       const aiMsg: Message = { id: genId(), role: 'assistant', content: reply, timestamp: Date.now() };
 
@@ -57,19 +70,24 @@ export default function App() {
   const handleReset = () => {
     if (window.confirm('会話履歴を削除しますか？この操作は取り消せません。')) {
       clearChatState();
-      setState({ messages: [], affinity: 0, affinityLevel: 1 });
+      setState({ messages: [], affinity: 0, affinityLevel: 1, settings: { ...settings, setupComplete: false } });
       setShowMenu(false);
     }
   };
+
+  // show onboarding if not setup
+  if (!settings.setupComplete) {
+    return <Onboarding onComplete={handleOnboardingComplete} />;
+  }
 
   return (
     <div className="h-full flex flex-col bg-washi">
       {/* Header */}
       <header className="relative flex items-center justify-between px-4 py-3 border-b border-sakura/20 bg-gradient-to-r from-washi via-white to-washi">
         <div className="flex items-center gap-3">
-          <img src="/avatar.svg" alt="withme" className="w-9 h-9 rounded-full border border-washi-dark" />
+          <img src={avatarUrl} alt={aiName} className="w-9 h-9 rounded-full object-cover border border-sakura/30" />
           <div>
-            <h1 className="text-sm font-medium text-text-primary tracking-wide">withme</h1>
+            <h1 className="text-sm font-medium text-text-primary tracking-wide">{aiName}</h1>
             <p className="text-xs text-text-muted">関係性は、言葉の隙間に生まれる</p>
           </div>
         </div>
@@ -100,7 +118,7 @@ export default function App() {
       </header>
 
       {/* Affinity */}
-      <AffinityBar affinity={state.affinity} />
+      <AffinityBar affinity={state.affinity} aiName={aiName} />
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-6 chat-bg relative">
@@ -108,10 +126,10 @@ export default function App() {
           {state.messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center py-20">
               <div className="relative mb-6">
-                <img src="/avatar.svg" alt="withme" className="w-24 h-24 rounded-full border-2 border-sakura shadow-lg" />
+                <img src={avatarUrl} alt={aiName} className="w-24 h-24 rounded-full border-2 border-sakura shadow-lg object-cover" />
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-white" />
               </div>
-              <h2 className="text-xl font-medium text-text-primary mb-1 tracking-wide">withme</h2>
+              <h2 className="text-xl font-medium text-text-primary mb-1 tracking-wide">{aiName}</h2>
               <p className="text-xs text-accent mb-4 tracking-widest">オンライン</p>
               <p className="text-sm text-text-muted max-w-xs leading-relaxed">
                 関係はゆっくり育てるもの。<br />
@@ -138,8 +156,8 @@ export default function App() {
           {loading && (
             <div className="flex justify-start mb-4 message-enter">
               <div className="flex gap-3 max-w-[80%]">
-                <img src="/avatar.svg" alt="withme" className="w-9 h-9 rounded-full flex-shrink-0 border border-washi-dark" />
-                <div className="rounded-2xl rounded-tl-sm px-4 py-3 bg-ai-bubble text-text-muted text-sm">
+                <img src={avatarUrl} alt={aiName} className="w-9 h-9 rounded-full flex-shrink-0 object-cover" />
+                <div className="rounded-2xl rounded-tl-sm px-4 py-3 bg-ai-bubble text-text-muted text-sm shadow-sm">
                   <span className="typing-cursor">●</span>
                 </div>
               </div>

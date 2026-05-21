@@ -2,17 +2,18 @@ import { getAffinityLevel } from '../lib/types';
 
 interface Props {
   affinity: number;
+  aiName: string;
 }
 
-export default function AffinityBar({ affinity }: Props) {
+export default function AffinityBar({ affinity, aiName }: Props) {
   const level = getAffinityLevel(affinity);
 
   return (
     <div className="px-4 py-3 border-b border-sakura/10 bg-gradient-to-r from-white via-sakura/5 to-white">
       <div className="flex items-center justify-between mb-1.5">
         <div className="flex items-center gap-2">
-          <span className="text-xs text-accent font-medium tracking-wider">{level.name}</span>
-          <span className="text-[10px] text-text-muted">Lv.{level.level}</span>
+          <span className="text-xs text-text-muted">{aiName}との関係</span>
+          <span className="text-xs text-accent font-medium">{level.name}</span>
         </div>
         <span className="text-[10px] text-text-muted tabular-nums">{affinity}%</span>
       </div>

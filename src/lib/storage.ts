@@ -1,18 +1,30 @@
-import type { ChatState, Message } from './types';
+import type { ChatState, Message, UserSettings } from './types';
 
 const STORAGE_KEY = 'withme-chat';
+
+const defaultSettings: UserSettings = {
+  aiGender: 'female',
+  aiName: '',
+  setupComplete: false,
+};
 
 const defaultState: ChatState = {
   messages: [],
   affinity: 0,
   affinityLevel: 1,
+  settings: defaultSettings,
 };
 
 export function loadChatState(): ChatState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return defaultState;
-    return JSON.parse(raw) as ChatState;
+    const parsed = JSON.parse(raw) as ChatState;
+    // migrate old states without settings
+    if (!parsed.settings) {
+      parsed.settings = defaultSettings;
+    }
+    return parsed;
   } catch {
     return defaultState;
   }
@@ -24,6 +36,13 @@ export function saveChatState(state: ChatState): void {
   } catch {
     // storage full or unavailable
   }
+}
+
+export function updateSettings(state: ChatState, settings: Partial<UserSettings>): ChatState {
+  return {
+    ...state,
+    settings: { ...state.settings, ...settings },
+  };
 }
 
 export function addMessage(state: ChatState, msg: Message): ChatState {
@@ -45,4 +64,8 @@ export function updateAffinity(state: ChatState, delta: number): ChatState {
 
 export function clearChatState(): void {
   localStorage.removeItem(STORAGE_KEY);
+}
+
+export function getAvatarUrl(gender: 'female' | 'male'): string {
+  return gender === 'female' ? '/avatar-female.jpg' : '/avatar-male.jpg';
 }

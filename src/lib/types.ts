@@ -6,10 +6,19 @@ export interface Message {
   image?: string; // base64 data URL
 }
 
+export type AIGender = 'female' | 'male';
+
+export interface UserSettings {
+  aiGender: AIGender;
+  aiName: string;
+  setupComplete: boolean;
+}
+
 export interface ChatState {
   messages: Message[];
   affinity: number; // 0-100
   affinityLevel: number; // 1-5
+  settings: UserSettings;
 }
 
 export const AFFINITY_LEVELS = [
