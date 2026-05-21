@@ -150,7 +150,7 @@ export default function App() {
           )}
 
           {state.messages.map((msg) => (
-            <ChatMessage key={msg.id} message={msg} />
+            <ChatMessage key={msg.id} message={msg} avatarUrl={avatarUrl} />
           ))}
 
           {loading && (

@@ -3,9 +3,10 @@ import type { Message } from '../lib/types';
 
 interface Props {
   message: Message;
+  avatarUrl: string;
 }
 
-export default function ChatMessage({ message }: Props) {
+export default function ChatMessage({ message, avatarUrl }: Props) {
   const isUser = message.role === 'user';
   const [lightbox, setLightbox] = useState(false);
 
@@ -19,7 +20,7 @@ export default function ChatMessage({ message }: Props) {
               你
             </div>
           ) : (
-            <img src="/avatar.svg" alt="withme" className="w-9 h-9 rounded-full flex-shrink-0" />
+            <img src={avatarUrl} alt="AI" className="w-9 h-9 rounded-full flex-shrink-0 object-cover" />
           )}
 
           {/* bubble */}
@@ -28,7 +29,6 @@ export default function ChatMessage({ message }: Props) {
               ? 'bg-user-bubble text-text-primary rounded-tr-sm'
               : 'bg-ai-bubble text-text-primary rounded-tl-sm'
           }`}>
-            {/* image */}
             {message.image && (
               <img
                 src={message.image}
@@ -42,7 +42,6 @@ export default function ChatMessage({ message }: Props) {
         </div>
       </div>
 
-      {/* lightbox */}
       {lightbox && message.image && (
         <div className="lightbox" onClick={() => setLightbox(false)}>
           <img src={message.image} alt="添付画像" />
