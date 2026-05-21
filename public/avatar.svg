@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="hair" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c2c2c"/>
+      <stop offset="100%" style="stop-color:#4a4a4a"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#faf8f5"/>
+      <stop offset="100%" style="stop-color:#f0ece5"/>
+    </linearGradient>
+  </defs>
+  <!-- background circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#bg)" stroke="#c75b7a" stroke-width="1.5"/>
+  <!-- hair back -->
+  <ellipse cx="100" cy="85" rx="55" ry="60" fill="url(#hair)"/>
+  <!-- face -->
+  <ellipse cx="100" cy="105" rx="38" ry="42" fill="#fde8d0"/>
+  <!-- hair front bangs -->
+  <path d="M60 80 Q70 55 100 50 Q130 55 140 80 Q135 70 120 68 Q110 75 100 72 Q90 75 80 68 Q65 70 60 80Z" fill="url(#hair)"/>
+  <!-- side hair left -->
+  <path d="M55 85 Q50 100 52 130 Q55 125 58 110 Q60 95 60 85Z" fill="url(#hair)"/>
+  <!-- side hair right -->
+  <path d="M145 85 Q150 100 148 130 Q145 125 142 110 Q140 95 140 85Z" fill="url(#hair)"/>
+  <!-- eyes -->
+  <ellipse cx="82" cy="105" rx="6" ry="7" fill="#2c2c2c"/>
+  <ellipse cx="118" cy="105" rx="6" ry="7" fill="#2c2c2c"/>
+  <!-- eye highlights -->
+  <circle cx="84" cy="103" r="2" fill="white" opacity="0.8"/>
+  <circle cx="120" cy="103" r="2" fill="white" opacity="0.8"/>
+  <!-- subtle blush -->
+  <ellipse cx="72" cy="115" rx="8" ry="4" fill="#f5c6d0" opacity="0.5"/>
+  <ellipse cx="128" cy="115" rx="8" ry="4" fill="#f5c6d0" opacity="0.5"/>
+  <!-- mouth - small neutral line -->
+  <path d="M95 122 Q100 125 105 122" stroke="#c75b7a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+</svg>

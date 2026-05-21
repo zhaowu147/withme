@@ -65,11 +65,9 @@ export default function App() {
   return (
     <div className="h-full flex flex-col bg-washi">
       {/* Header */}
-      <header className="relative flex items-center justify-between px-4 py-3 border-b border-washi-dark bg-washi/80 backdrop-blur-sm">
+      <header className="relative flex items-center justify-between px-4 py-3 border-b border-sakura/20 bg-gradient-to-r from-washi via-white to-washi">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center">
-            <span className="text-accent font-serif text-lg font-medium">w</span>
-          </div>
+          <img src="/avatar.svg" alt="withme" className="w-9 h-9 rounded-full border border-washi-dark" />
           <div>
             <h1 className="text-sm font-medium text-text-primary tracking-wide">withme</h1>
             <p className="text-xs text-text-muted">関係性は、言葉の隙間に生まれる</p>
@@ -105,18 +103,32 @@ export default function App() {
       <AffinityBar affinity={state.affinity} />
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-6">
+      <div className="flex-1 overflow-y-auto px-4 py-6 chat-bg relative">
+        <img src="/petals.svg" alt="" className="absolute inset-0 w-full h-full pointer-events-none float-petal" aria-hidden="true" />
         <div className="max-w-3xl mx-auto">
           {state.messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center py-20">
-              <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
-                <span className="text-accent font-serif text-3xl font-medium">w</span>
+              <div className="relative mb-6">
+                <img src="/avatar.svg" alt="withme" className="w-24 h-24 rounded-full border-2 border-sakura shadow-lg" />
+                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-white" />
               </div>
-              <h2 className="text-lg font-medium text-text-primary mb-2">withme</h2>
+              <h2 className="text-xl font-medium text-text-primary mb-1 tracking-wide">withme</h2>
+              <p className="text-xs text-accent mb-4 tracking-widest">オンライン</p>
               <p className="text-sm text-text-muted max-w-xs leading-relaxed">
                 関係はゆっくり育てるもの。<br />
                 今日はどんな話をしたい？
               </p>
+              <div className="mt-8 flex gap-2 flex-wrap justify-center max-w-sm">
+                {['今日どうだった？', '好きな本ある？', '意味って何だろう'].map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => handleSend(q)}
+                    className="px-4 py-2 text-xs text-accent border border-sakura/30 rounded-full hover:bg-sakura/10 transition-colors"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
@@ -127,9 +139,7 @@ export default function App() {
           {loading && (
             <div className="flex justify-start mb-4 message-enter">
               <div className="flex gap-3 max-w-[80%]">
-                <div className="w-8 h-8 rounded-full bg-ai-bubble text-accent flex items-center justify-center text-xs flex-shrink-0">
-                  w
-                </div>
+                <img src="/avatar.svg" alt="withme" className="w-9 h-9 rounded-full flex-shrink-0 border border-washi-dark" />
                 <div className="rounded-2xl rounded-tl-sm px-4 py-3 bg-ai-bubble text-text-muted text-sm">
                   <span className="typing-cursor">●</span>
                 </div>
